@@ -4,7 +4,12 @@ import {BrowserRouter, Route, Link} from 'react-router-dom';
 import './App.css';
 import cartScreen from './screens/cartScreen';
 import HomeScreen from './screens/HomeScreen';
+import PaymentScreen from './screens/PaymentScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import ProductScreen from './screens/ProductScreen';
+import ProductsScreen from './screens/ProductsScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import ShippingScreen from './screens/ShippingScreen';
 import SigninScreen from './screens/SigninScreen';
 
 function App() {
@@ -52,7 +57,12 @@ function App() {
             </aside>
             <main>
                 <div className="content">
+                  <Route path="/products" component={ProductsScreen} />
                   <Route path="/signin" component={SigninScreen} />
+                  <Route path="/shipping" component={ShippingScreen} />
+                  <Route path="/payment" component={PaymentScreen} />
+                  <Route path="/placeorder" component={PlaceOrderScreen} />
+                  <Route path="/register" component={RegisterScreen} />
                   <Route path="/product/:id" component={ProductScreen} />
                   <Route path="/cart/:id?" component={cartScreen} />
                   <Route path="/" exact={true} component={HomeScreen} />

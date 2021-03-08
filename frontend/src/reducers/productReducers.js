@@ -1,10 +1,10 @@
-import { PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS } from "../constants/productConstants";
+import { PRODUCT_DELETE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_SAVE_FAIL, PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS } from "../constants/productConstants";
 
 function productListReducer(state= {products: []}, actions){
 
     switch (actions.type) {
         case PRODUCT_LIST_REQUEST:
-            return {loading: true};
+            return {loading: true, products: []};
         case PRODUCT_LIST_SUCCESS:
             return {loading: false, products: actions.payload};
         case PRODUCT_LIST_FAIL:
@@ -28,4 +28,32 @@ function productDetailsReducer(state= {product: {}}, actions){
     }
 }
 
-export { productListReducer, productDetailsReducer }
+function productDeleteReducer(state= {product: {}}, actions){
+
+    switch (actions.type) {
+        case PRODUCT_DELETE_REQUEST:
+            return {loading: true};
+        case PRODUCT_DELETE_SUCCESS:
+            return {loading: false, product: actions.payload, success: true};
+        case PRODUCT_DELETE_FAIL:
+            return {loading: false, error: actions.payload};
+        default:
+            return state;
+    }
+}
+
+function productSaveReducer(state= {product: {}}, actions){
+
+    switch (actions.type) {
+        case PRODUCT_SAVE_REQUEST:
+            return {loading: true};
+        case PRODUCT_SAVE_SUCCESS:
+            return {loading: false, success: true, product: actions.payload};
+        case PRODUCT_SAVE_FAIL:
+            return {loading: false, error: actions.payload};
+        default:
+            return state;
+    }
+}
+
+export { productListReducer, productDetailsReducer, productSaveReducer, productDeleteReducer }
